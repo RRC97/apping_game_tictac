@@ -1,7 +1,7 @@
 const database = require('../database');
 
 module.exports = async (req, res, next) => {
-    const token = req.body.token ? req.body.token : "";
+    const token = req.query.token ? req.query.token : req.body.token ? req.body.token : "";
     const result = await database('players').select().where('token', token);
 
     if(result.length > 0) {

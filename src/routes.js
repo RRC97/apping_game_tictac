@@ -13,6 +13,6 @@ routes.all('*', cors(), express.json(), ApiTokenMiddleware);
 routes.post('/register', AuthController.register);
 routes.post('/login', AuthController.login);
 
-routes.use(UserTokenMiddleware).get('/player', PlayerController.index);
+routes.get('/player', UserTokenMiddleware, PlayerController.index);
 
 module.exports = routes;
