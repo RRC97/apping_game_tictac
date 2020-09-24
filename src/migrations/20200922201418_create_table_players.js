@@ -8,7 +8,7 @@ exports.up = function(knex) {
         table.string('token').unique();
         
         table.integer('avatar_id').nullable();
-        table.foreign('avatar_id').references('id').inTable('avatars');
+        table.foreign('avatar_id').references('Avatars:id');
         
         table.timestamp('updated_at').defaultTo(knex.fn.now());
         table.timestamp('created_at').defaultTo(knex.fn.now());
