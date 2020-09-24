@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <!--Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tic Toc Toe</title>
+
+
+
+    <script src="../../utils/xhttp_request.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"
+        integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A=="
+        crossorigin="anonymous"></script>
+
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        input {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container-fluid" id="container" style="display: none;">
+
+        <div class="row">
+            <div class="col-lg col-md col-sm-0">
+
+            </div>
+            <div class="col-lg-auto col-md-auto col-sm" style="width: 400px;">
+                <h1 style=" text-align: center;">Tic Toc Toe</h1>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Entre com o login e senha</h4>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h6>Nome de usuário</h6>
+                            <input class="input-form" id="input_login" type="text"
+                                placeholder="Digite seu nome de usuário">
+                            <p class="error-label"></p>
+                        </div>
+                        <div>
+                            <h6>Senha</h6>
+                            <input class="input-form" id="input_password" type="text" placeholder="Digite sua senha">
+                            <p class="error-label"></p>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button id="btn_login" onclick="checkAndLogin()">Entrar</button>
+                        <button id="btn_register" onclick="window.open('../register/','_self')">Cadastrar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-md col-sm-0">
+
+            </div>
+        </div>
+    </div>
+
+    <!--Optional JavaScript-->
+    <!--jQuery first, then Popper.js, then Bootstrap JS-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script src="./index.js"></script>
+    <script src="../../utils/crypto_password.js"></script>
+    <script src="./login-manager.js"></script>
+</body>
+
+</html>
