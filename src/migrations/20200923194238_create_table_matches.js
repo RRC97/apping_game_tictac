@@ -6,7 +6,9 @@ exports.up = function(knex) {
         table.integer('request_id').notNullable();
         table.foreign('request_id').references('Match_requests:id');
         
-        table.string('data').defaultTo('{}');
+        table.integer('winner').defaultTo(0);
+        table.integer('turn').defaultTo(0);
+        table.string('data').defaultTo('[[0,0,0],[0,0,0],[0,0,0]]');
         table.text('chat').defaultTo('[]');
 
         table.integer('status').defaultTo(0);

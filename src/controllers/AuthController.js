@@ -7,18 +7,16 @@ module.exports = {
         const password = req.body.password ? req.body.password : "";
 
         if(username != '' && password != '') {
-            const existPlayer = await database('players').select().where('username', username);
+            const existPlayer = await database('players').where('username', username);
 
             if(existPlayer.length < 1) {
-                const result = await database('players').returning('token').insert({
+                const result = await database('players').returning(['token', 'username', 'email']).insert({
                     username: username,
                     password: password,
                     token: crypto.randomBytes(32).toString('hex')
                 });
         
-                return res.send({
-                    token: result[0]
-                });
+                return res.send(result[0]);
             } else {
                 return res.status(401).send({
                     errorcode: 3,
@@ -37,16 +35,13 @@ module.exports = {
         const password = req.body.password ? req.body.password : "";
 
         if(username != '' && password != '') {
-            const existPlayer = await database('players').select()
+            const existPlayer = await database('players')
+                .returning(['username', 'token', 'email'])
                 .where('username', username)
                 .where('password', password);
 
             if(existPlayer.length > 0) {
-                const player = existPlayer[0];
-
-                return res.send({
-                    token: player.token
-                });
+                return res.send(existPlayer[0]);
             } else {
                 return res.status(401).send({
                     errorcode: 4,

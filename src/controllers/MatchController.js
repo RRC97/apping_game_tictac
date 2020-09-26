@@ -35,8 +35,5 @@ module.exports = {
             }
         }
         return res.send(req.user);
-    },
-    async search(req, res) {
-        
     }
 }
