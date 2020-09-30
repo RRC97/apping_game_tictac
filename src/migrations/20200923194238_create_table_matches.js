@@ -14,8 +14,7 @@ exports.up = function(knex) {
         table.text('chat').defaultTo('[]');
         table.text('moves').defaultTo('[]');
         table.integer('result').defaultTo(0);
-
-        table.integer('status').defaultTo(0);
+        
         table.integer('type').defaultTo(0);
 
         table.timestamp('updated_at').defaultTo(knex.fn.now());

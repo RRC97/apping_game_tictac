@@ -215,6 +215,8 @@ io.on('connection', socket => {
                         const moves = JSON.parse(match[0].moves);
                         moves.push({index: match[0].index, player: player.id, move: {x: move.x, y: move.y}});
 
+                        
+
                         const response = await database('matches')
                             .where('id', match[0].id)
                             .update({
@@ -228,6 +230,11 @@ io.on('connection', socket => {
                             }).returning('*');
 
                         if(response.length > 0) {
+                            if(matchResult > 0) {
+                                await database('match_requests')
+                                    .where('id', match[0].request_id)
+                                    .update({status: 2});
+                            }
                             var matchUpdate = response[0];
                             players = io.sockets.in(player.room).sockets;
                             for(var socketPlayer in players) {
