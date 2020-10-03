@@ -1,12 +1,119 @@
+@font-face {
+    font-family: 'DIGIT';
+    src: url('../../utils/DS-DIGI.TTF');
+}
+
 html,body{
     width: 100%;
     height: 100%;
+    font-family: 'DIGIT';
 }
+
+
 
 .end-game-message{
     width: 100%;
     height: 100%;
     text-align: center;
-   
+    color: white;
     font-size: 50px;
+    text-transform: uppercase;
+}
+
+.box {
+    width: calc(100% / 3);
+    display: flex;
+    background: black;
+    background-size: cover;
+}
+
+#game_area {
+    max-width: 500px;
+    max-height: 500px;
+    margin: auto;
+}
+
+#box_container_2,
+#box_container_3 {
+    margin-top: -8px;
+}
+
+#box_1,
+#box_2,
+#box_3 {
+    border-top: 1px solid red;
+}
+
+#box_1,
+#box_4,
+#box_7 {
+    border-top: 1px solid red;
+    border-left: 1px solid red;
+    border-bottom: 1px solid red;
+}
+
+#box_2,
+#box_5,
+#box_8 {
+    border-top: 1px solid red;
+    border-left: 1px solid red;
+    border-bottom: 1px solid red;
+}
+
+#box_3,
+#box_6,
+#box_9 {
+    border-top: 1px solid red;
+    border-left: 1px solid red;
+    border-bottom: 1px solid red;
+    border-right: 1px solid red;
+}
+
+.game-mode {
+    margin: 0px;
+}
+
+.user-avatar {
+    
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    border: 1px solid rgb(2, 2, 2);
+}
+
+
+.user-name {
+    margin: auto 0px;
+}
+
+@media screen and (max-width: 800px){
+    .players-header{
+        justify-content: center;
+        display: inline-flex;
+    }
+
+    .players-header h2{
+        margin: 0px 16px 0px 16px;
+    }
+}
+
+.card{
+    background: unset;
+    border: unset;
+}
+
+.btn{
+    background: black;
+    color: red;
+    border: unset;
+    border: 1px solid red;
+    border-radius: unset;
+}
+
+#input_message{
+    outline: unset;
+    border: unset;
+    background: black;
+    color: red;
+    text-transform: uppercase;
 }

@@ -14,114 +14,26 @@
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 
-    <style>
-        .box {
-            width: calc(100% / 3);
-            display: flex;
-            background: black;
-            background-size: cover;
-        }
-
-        #game_area {
-            max-width: 500px;
-            max-height: 500px;
-            margin: auto;
-        }
-
-        #box_container_2,
-        #box_container_3 {
-            margin-top: -8px;
-        }
-
-        #box_1,
-        #box_2,
-        #box_3 {
-            border-top: 1px solid red;
-        }
-
-        #box_1,
-        #box_4,
-        #box_7 {
-            border-top: 1px solid red;
-            border-left: 1px solid red;
-            border-bottom: 1px solid red;
-        }
-
-        #box_2,
-        #box_5,
-        #box_8 {
-            border-top: 1px solid red;
-            border-left: 1px solid red;
-            border-bottom: 1px solid red;
-        }
-
-        #box_3,
-        #box_6,
-        #box_9 {
-            border-top: 1px solid red;
-            border-left: 1px solid red;
-            border-bottom: 1px solid red;
-            border-right: 1px solid red;
-        }
-
-        .game-mode {
-            margin: 0px;
-        }
-
-        .user-avatar {
-            margin-right: 8px;
-            width: 32px;
-            height: 32px;
-            border-radius: 100%;
-            border: 1px solid rgb(2, 2, 2);
-        }
-
-        
-        .user-name {
-            margin: auto 0px;
-        }
-    </style>
 </head>
 
 <body>
 
 
     <div class="card h-100 w-100">
-        <div class="card-header">
 
-        </div>
-        <div class="card-body">
+        <div class="card-body p-lg-3 p-sm-0" style="background: #525252;">
 
-            <div class="row h-100">
-                <div class="col-lg-3 col-md-3 col-sm-3 p-0">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <h6 class="game-mode">Melhor de 5</h6>
-                        </div>
-                        <div class="card-header" style="text-align: center;">
+            <div class="row h-100 w-100 m-0" style="background: black;">
 
-                            <div class="d-inline-flex">
-                                <img src="" alt="" class="user-avatar">
-                                <h6 class="user-name" id="p1_name">---</h6>
-                            </div>
-                            <h2>VS</h2>
-                            <div class="d-inline-flex">
-                                <img src="" alt="" class="user-avatar">
-                                <h6 class="user-name" id="p2_name">---</h6>
-                            </div>
-                        </div>
-                        <div class="card-body"></div>
-                    </div>
-                </div>
-
-                <div class="col h-100">
+                <div class="col h-100 pl-0">
                     <div class="card h-100 w-100" id="game_area_card">
-                        <div class="card-body p-0" style="display: grid;" id="game_area_body">
+                        <div class="card-body p-4" style="display: grid;" id="game_area_body">
                             <div id="game_area">
                                 <div class="d-inline-flex w-100 box-container" data-row="0" id="box_container_1">
-                                    <div class="box" data-column="0" data-x="0" data-y="0"  id="box_1">
-                                       
+                                    <div class="box" data-column="0" data-x="0" data-y="0" id="box_1">
+
                                     </div>
                                     <div class="box" data-column="1" data-x="0" data-y="1" id="box_2">
 
@@ -159,29 +71,53 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-3 p-0">
-                    <div class="card  h-100">
-                        <div class="card-header"></div>
-                        <div class="card-body">
-                            <ul class="h-100" id="chat_box" style="list-style: none;padding-left: 0px;">
+                <div class="m-3 col-lg-3 col-md-3 col-sm-3 p-0" style="min-width: 350px;background: #525252;">
+                    <div class="card h-100">
+                        <div class="card-header p-2" style="color: white;">
+                             <div class="d-inline-flex w-100" style="background: black;align-items: center;">
+                                <h6 class="game-mode p-2 m-0" id="game_mode" >---</h6>
+                                <span class="btn btn-send ml-auto">
+                                    Render-se
+                                </span>
+                             </div>
+                        </div>
+                        <div class="card-header players-header p-2" style="text-align: center;color: white;">
+                            <div style="background: black; " class="p-2 w-100 d-flex">
+                                <div class="m-auto d-inline-flex" style="align-items: center;">
+                                    <div align="center" class="mr-3">
+                                        <img src="../../src/neutral.png" alt="" class="user-avatar">
+                                        <h6 class="user-name" id="p1_name">---</h6>
+                                    </div>
+                                    <h2 class="mr-3">VS</h2>
+                                    <div align="center" >
+                                        <img src="../../src/neutral.png" alt="" class="user-avatar">
+                                        <h6 class="user-name" id="p2_name">---</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-2">
+                            <ul class="h-100" id="chat_box"
+                                style="list-style: none;padding-left: 0px;background: black;">
 
                             </ul>
                         </div>
-                        <div class="card-footer p-2">
-                            <div class="input-group">
+                        <div class="card-footer p-2" ">
+                            <div class=" input-group">
 
-                                <input type="text" id="input_message" class="form-control"
-                                    placeholder="Example placeholder" aria-label="Example placeholder"
-                                    aria-describedby="exampleAddon">
-                                <div class="input-group-prepend" onclick="sendMessage($('#input_message'));">
-                                    <span class="input-group-text material-design" id="exampleAddon">Enviar</span>
-                                </div>
-                            </div>
+                            <input type="text" id="input_message" class="form-control" placeholder="DIGITE UMA MENSAGEM
+                                aria-describedby="exampleAddon">
+                            <span class="material-icons btn btn-send" id="send_button">
+                                send
+                            </span>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+    </div>
 
     </div>
     <link rel="stylesheet" href="./index.css">

@@ -2,6 +2,8 @@ var user_token = localStorage.getItem('user_token');
 
 var io = io('ws://25.43.203.103:3000');
 
+var game_status = {};
+
 io.on('connect', () => {
 
     console.log(`on connect`);
@@ -13,7 +15,7 @@ io.on('connect', () => {
 
     io.on('token:success', (player) => {
         //console.log('token-success');
-        //console.log(player);
+        console.log(player);
     })
 
     io.on('token:failed', (data) => {
@@ -29,8 +31,13 @@ io.on('connect', () => {
 
     })
 
-    var gameUpdate = function () {
-       
+    io.emit('game-update', {}, (data) => {
+        
+    })
+
+
+    /*var gameUpdate = function () {
+
         setTimeout(() => {
 
             io.emit('game-update', {}, (data) => {
@@ -42,35 +49,20 @@ io.on('connect', () => {
         }, 1000);
     }
 
-    gameUpdate();
-
-    function getWinner(winner, creator) {
-        switch (winner) {
-            case 1:
-                if (creator) {
-                    return 'Você Ganhou essa bagaça';
-                } else {
-                    return 'Perdeu seu trouxa';
-                }
-                return '';
-            case 2:
-                if (!creator) {
-                    return 'Você Ganhou essa bagaça';
-                } else {
-                    return 'Perdeu seu trouxa';
-                }
-                return '';
-        }
-    }
+    gameUpdate();*/
 
     io.on('game-update', (data) => {
 
-        if (data.winner > 0) {
+        updateUi(data)
+
+        game_status = data;
+        
+        if (data.result > 0) {
             var game_area = document.getElementById('game_area');
 
-            game_area.innerHTML = `<h1 class="end-game-message">${getWinner(data.winner, data.creator)}</h1>`;
+            game_area.innerHTML = `<h1 class="end-game-message">${getWinner(data.result, data.isCreator)}</h1>`;
 
-            gameUpdate = function (){};
+            gameUpdate = function () { };
 
         } else {
             updateUi(data);
@@ -79,13 +71,25 @@ io.on('connect', () => {
 
 });
 
-function updateUi(data) {
-    var table = JSON.parse(data.data);
-
-    //console.log(data);
-
-    updateTable(table);
+function getWinner(winner, isCreator) {
+    switch (winner) {
+        case 1:
+            if (isCreator) {
+                return 'Você Ganhou essa bagaça';
+            } else {
+                return 'Perdeu seu trouxa';
+            }
+            return '';
+        case 2:
+            if (!isCreator) {
+                return 'Você Ganhou essa bagaça';
+            } else {
+                return 'Perdeu seu trouxa';
+            }
+            return '';
+    }
 }
+
 
 clickBoxes();
 
@@ -108,25 +112,6 @@ function clickBoxes() {
     }
 }
 
-function updateTable(table) {
-    var box_container_1 = document.getElementById('box_container_1');
-    var box_container_2 = document.getElementById('box_container_2');
-    var box_container_3 = document.getElementById('box_container_3');
-
-    var row1 = table[0];
-    box_container_1.getElementsByClassName('box')[0].style.backgroundImage = getImageFromTableData(row1[0]);
-    box_container_1.getElementsByClassName('box')[1].style.backgroundImage = getImageFromTableData(row1[1]);
-    box_container_1.getElementsByClassName('box')[2].style.backgroundImage = getImageFromTableData(row1[2]);
-    var row2 = table[1];
-    box_container_2.getElementsByClassName('box')[0].style.backgroundImage = getImageFromTableData(row2[0]);
-    box_container_2.getElementsByClassName('box')[1].style.backgroundImage = getImageFromTableData(row2[1]);
-    box_container_2.getElementsByClassName('box')[2].style.backgroundImage = getImageFromTableData(row2[2]);
-    var row3 = table[2];
-    box_container_3.getElementsByClassName('box')[0].style.backgroundImage = getImageFromTableData(row3[0]);
-    box_container_3.getElementsByClassName('box')[1].style.backgroundImage = getImageFromTableData(row3[1]);
-    box_container_3.getElementsByClassName('box')[2].style.backgroundImage = getImageFromTableData(row3[2]);
-
-}
 
 function getImageFromTableData(value) {
     switch (value) {
@@ -139,6 +124,25 @@ function getImageFromTableData(value) {
     }
 }
 
+$('#send_button').click(function () {
+    var message = $('#input_message').val();
+
+    io.emit('chat-message', message, function (data) {
+        //console.log(data);
+    });
+})
+
+$('#input_message').keypress(function (event) {
+
+    if (event.code == 'Enter') {
+        if (this.value != '') {
+            $('#send_button').click();
+            this.value = '';
+        }
+    }
+})
+
+
 function addMessageToChatBox(obj_message) {
     var chat_box = document.getElementById('chat_box');
 
@@ -147,14 +151,6 @@ function addMessageToChatBox(obj_message) {
     li.className = 'chat-message-item';
 
     chat_box.appendChild(li);
-}
-
-function sendMessage(input) {
-    var message = input[0].value;
-
-    io.emit('chat-message', message, function (data) {
-        //console.log(data);
-    });
 }
 
 
